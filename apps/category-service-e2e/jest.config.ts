@@ -1,5 +1,5 @@
 export default {
-  displayName: 'nx-microservices-e2e',
+  displayName: 'category-service-e2e',
   preset: '../../jest.preset.js',
   globalSetup: '<rootDir>/src/support/global-setup.ts',
   globalTeardown: '<rootDir>/src/support/global-teardown.ts',
@@ -14,5 +14,5 @@ export default {
     ],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/nx-microservices-e2e',
+  coverageDirectory: '../../coverage/category-service-e2e',
 };

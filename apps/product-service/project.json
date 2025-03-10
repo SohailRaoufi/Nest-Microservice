@@ -1,7 +1,7 @@
 {
-  "name": "nx-microservices",
+  "name": "product-service",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/nx-microservices/src",
+  "sourceRoot": "apps/product-service/src",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -22,21 +22,16 @@
       "defaultConfiguration": "development",
       "dependsOn": ["build"],
       "options": {
-        "buildTarget": "nx-microservices:build",
+        "buildTarget": "product-service:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "nx-microservices:build:development"
+          "buildTarget": "product-service:build:development"
         },
         "production": {
-          "buildTarget": "nx-microservices:build:production"
+          "buildTarget": "product-service:build:production"
         }
-      }
-    },
-    "test": {
-      "options": {
-        "passWithNoTests": true
       }
     }
   }

@@ -36,7 +36,10 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/nx-microservices-e2e/**/*"]
+      "exclude": [
+        "apps/product-service-e2e/**/*",
+        "apps/category-service-e2e/**/*"
+      ]
     }
   ]
 }
