@@ -1,12 +1,30 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller('categories')
 export class AppController {
   constructor(private readonly appService: AppService) {}
+  private categories = [];
 
   @Get()
-  getData() {
-    return this.appService.getData();
+  getAllCategories() {
+    return this.categories;
+  }
+
+  @Post()
+  addCategory(@Body() category: { name: string }) {
+    this.categories.push(category);
+    return { message: 'Category added', category };
+  }
+
+  @Get(':id')
+  getCategory(@Param('id') id: number) {
+    return this.appService.getCategory(id);
+  }
+
+  @Delete(':id')
+  deleteCategory(@Param('id') id: number) {
+    this.categories.splice(id, 1);
+    return { message: 'Category deleted' };
   }
 }
