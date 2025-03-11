@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nx-microservices/types": ["libs/types/src/index.ts"]
+      "@nx-microservices/configs": ["libs/configs/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
