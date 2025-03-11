@@ -14,7 +14,7 @@ async function bootstrap() {
     productServiceConfig
   );
 
-  app.listen();
+  await app.listen();
 }
 
 bootstrap();

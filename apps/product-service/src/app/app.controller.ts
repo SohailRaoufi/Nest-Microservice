@@ -8,8 +8,8 @@ export class AppController {
   private products = [];
 
   @MessagePattern('getProducts')
-  getAllProducts(data: any) {
-    return this.appService.getProducts(data.value);
+  async getAllProducts(data: any) {
+    return this.appService.getProducts(data);
   }
 
   @Post()

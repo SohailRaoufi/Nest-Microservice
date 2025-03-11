@@ -1,18 +1,22 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
 
 @Injectable()
-export class AppService {
+export class AppService implements OnModuleInit {
   constructor(
     @Inject('PRODUCT_SERVICE') private readonly productClient: ClientKafka
   ) {}
+
+  async onModuleInit() {
+    await this.productClient.connect();
+    this.productClient.subscribeToResponseOf('getProducts');
+  }
+
   getData(): { message: string } {
     return { message: 'Hello API' };
   }
 
   getCategory(id: number) {
-    console.log(this.productClient.status);
-
     const response = this.productClient.send('getProducts', {
       category: id,
     });

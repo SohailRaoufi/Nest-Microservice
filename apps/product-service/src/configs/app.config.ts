@@ -1,5 +1,4 @@
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { Partitioners } from 'kafkajs';
 
 export const productServiceConfig: MicroserviceOptions = {
   transport: Transport.KAFKA,
@@ -9,9 +8,6 @@ export const productServiceConfig: MicroserviceOptions = {
     },
     consumer: {
       groupId: 'product-consumer',
-    },
-    producer: {
-      createPartitioner: Partitioners.LegacyPartitioner,
     },
   },
 };
