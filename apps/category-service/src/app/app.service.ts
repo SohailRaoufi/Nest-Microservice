@@ -1,5 +1,6 @@
 import { Inject, Injectable, OnModuleInit } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class AppService implements OnModuleInit {
@@ -7,8 +8,7 @@ export class AppService implements OnModuleInit {
     @Inject('PRODUCT_SERVICE') private readonly productClient: ClientKafka
   ) {}
 
-  async onModuleInit() {
-    await this.productClient.connect();
+  onModuleInit() {
     this.productClient.subscribeToResponseOf('getProducts');
   }
 
@@ -16,12 +16,13 @@ export class AppService implements OnModuleInit {
     return { message: 'Hello API' };
   }
 
-  getCategory(id: number) {
-    const response = this.productClient.send('getProducts', {
-      category: id,
-    });
+  async getCategory(id: number) {
+    const response = await firstValueFrom(
+      this.productClient.send('getProducts', {
+        category: id,
+      })
+    );
 
-    console.log(response);
     return response;
   }
 }

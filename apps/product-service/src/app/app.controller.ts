@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { AppService } from './app.service';
-import { MessagePattern } from '@nestjs/microservices';
+import { EventPattern, MessagePattern } from '@nestjs/microservices';
 
 @Controller('products')
 export class AppController {
@@ -9,7 +9,7 @@ export class AppController {
 
   @MessagePattern('getProducts')
   async getAllProducts(data: any) {
-    return this.appService.getProducts(data);
+    return await this.appService.getProducts(data);
   }
 
   @Post()

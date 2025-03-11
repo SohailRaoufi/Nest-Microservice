@@ -1,4 +1,5 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
+import { productDetails } from './products';
 
 @Injectable()
 export class AppService {
@@ -10,14 +11,13 @@ export class AppService {
     return { message: 'Hello API' };
   }
 
-  getProducts(data: any) {
-    this.logger.log('Product Recieved The Following DAta', data);
+  async getProducts(data: { category: string }) {
+    this.logger.log('Product Received The Following Data', data);
 
-    return { message: 'Product Recieved The Following DAta', data };
+    const product = productDetails.filter(
+      (cat) => cat.categoryId === +data.category
+    );
 
-    // return this.productClient.emit('getProducts', {
-    //   name: 'Shoe',
-    //   category: 1,
-    // });
+    return product;
   }
 }

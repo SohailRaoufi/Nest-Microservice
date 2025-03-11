@@ -18,8 +18,8 @@ export class AppController {
   }
 
   @Get(':id')
-  getCategory(@Param('id') id: number) {
-    return this.appService.getCategory(id);
+  async getCategory(@Param('id') id: number) {
+    return await this.appService.getCategory(id);
   }
 
   @Delete(':id')
